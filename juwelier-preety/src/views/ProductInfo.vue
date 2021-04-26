@@ -9,11 +9,11 @@
     </div>
 <div class="secondSpacer"></div>
     <!-- Show product info -->
-    <b-container class="mt-5 container">
-        <b-row class="pt-2 pl-1">
-            <b-col align-self="baseline">
-                <div class="productTitle getBorder">
-                    <div class="first">
+    <div class="productDiv textColor pb-2">
+        <b-row class="pt-2">
+            <b-col align-self="baseline" class="firstCol">
+                <div class="productTitle">
+                    <div class="first ml-3">
                         <h3>RHINE STONE</h3>
                         <h5>FRANSE RING MET FLEUR UIT BABLA</h5>
                     </div>
@@ -22,7 +22,7 @@
                         <p>2 tot 5 weken</p>
                     </div><br>
                 </div>
-                <b-row class="productInfoDiv getBorder mt-2">
+                <b-row class="productInfoDiv mt-2">
                     <b-col>
                         <h3 class="description">Beschrijving</h3>
                         <div class="descriptionInfoBg">
@@ -76,14 +76,48 @@
                 <img src="@/assets/productImg.png" class="imgSelf">
             </b-col>
         </b-row>
-        
-        <b-row>
-            <div>
-                <h1>shdgfhsgdf</h1>
-            </div>
+        <!-- Add to cart -->
+        <b-row class="pt-2 addCardDiv textColor">
+            <b-col class="cardText" lg="5">
+                <b-row>
+                    <b-col>
+                        <h3 class="mt-2">Voeg toe aan winkelwagen</h3>
+                    </b-col>
+                    <b-col lg="2" class="heartDiv">
+                        <img src="@/assets/heart.png" class="heartImg">
+                    </b-col>
+                    <b-col lg="2" class="heartDiv">
+                        <img src="@/assets/heart.png" class="heartImg">
+                    </b-col>
+                </b-row>
+            </b-col>
+            <b-col class="cost text-center pt-1" lg="2">
+                <h1>$1200</h1>
+            </b-col>
         </b-row>
-    </b-container>
-<div class="bigSpacer"></div>
+    </div>
+    <!-- Product specificaties -->
+    <div class="txtDiv">
+        <h5 class="text-center textColor pt-1">Product specificaties</h5>
+    </div>
+    <b-row>
+        <b-col lg="4" v-for="productSpecif in productSpec" :key="productSpecif.name">
+            <div class="productSpecDiv textColor pl-3 pb-1">
+                <h2>{{productSpecif.name}}</h2>
+            </div>
+        </b-col>
+        <!-- <b-col lg="4">
+            <div class="productSpecDiv pl-3">
+                <h1>test</h1>
+            </div>
+        </b-col>
+        <b-col lg="4">
+            <div class="productSpecDiv pl-3">
+                <h1>test</h1>
+            </div>
+        </b-col> -->
+    </b-row>
+<!-- <div class="bigSpacer"></div> -->
     <SocialMedia></SocialMedia>
     <Footer></Footer>
   </div>
@@ -105,7 +139,21 @@ export default {
   name: 'Home',
   data() {
     return {
-
+        productSpec: [
+          { name: 'Model nummer:' },
+          { name: 'Diamand Gewicht:' },
+          { name: 'Karaat:' },
+          { name: 'Materiaal:' },
+          { name: 'Diamand zuiverheid:' },
+          { name: 'Model set' },
+          { name: 'Maat' },
+          { name: 'Kleur steen' },
+          { name: 'Merk' },
+          { name: 'Diamand slijpvorm' },
+          { name: 'Slijpvorm' },
+          { name: 'Diamand aantal' },
+          { name: 'Afmeting' },
+        ]
     }
   },
   head: {
@@ -134,12 +182,18 @@ export default {
   
 }
 
+.textColor {
+  color: #707070;
+}
+
 .getBorder {
   border: 5px solid #f7f7f7;
 }
 
-.container {
-  max-width: 1540px;
+.productDiv {
+  margin: 0 auto;
+  background-color: #f7f7f7;
+  padding: 0px 50px;
 }
 
 .txtDiv {
@@ -180,7 +234,6 @@ export default {
 }
 
 .imgDiv {
-  border: 2px solid white;
   margin: 0px 5px;
   padding: 0;
   width: 100%;
@@ -190,10 +243,16 @@ export default {
 .imgSelf {
   width: 100%;
   height: 100%;
+  border: 2px solid white;
 }
 
 .productInfoDiv {
   background-color: white;
+  margin-left: 0px;
+}
+
+.firstCol {
+  padding-left: 0px;
 }
 
 .description {
@@ -211,5 +270,36 @@ export default {
 .descriptionText {
   font-weight: bold;
   font-size: 18px;
+}
+
+.addCardDiv {
+  background-color: white;
+  width: 1518px;
+}
+
+.cardText {
+  border: 2px solid #f7f7f7;
+  margin: 10px;
+}
+
+.cost {
+  border: 2px solid #f7f7f7;
+  margin: 10px;
+}
+
+.heartDiv {
+  border-left: 2px solid #f7f7f7;
+  height: 60px;
+}
+
+.heartImg {
+  width: 40px;
+  height: 40px;
+  margin: 10px 15px;
+}
+
+.productSpecDiv {
+  background-color: #f7f7f7;
+  margin: 10px 20px;
 }
 </style>
