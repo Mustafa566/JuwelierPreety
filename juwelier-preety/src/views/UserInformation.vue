@@ -45,7 +45,7 @@
                                 </b-col>
                             </b-row> 
                         </b-col>
-                        <b-col cols="3" class="userCol">
+                        <b-col cols="3" class="productCol">
                             <div class="userDiv">
                                 <h4 class="userText">Gebruikers opties</h4>
                                 <div class="buttonOptions">Gegevens aanpassen</div>
@@ -88,12 +88,12 @@
                                 <b-col lg="6" class="mb-2">
                                     <b-form-input type="text" placeholder="Huis Nummer + Toevoeging" required></b-form-input>
                                 </b-col>
-                                <b-col lg="6" class="rightInput">
+                                <b-col lg="6" class="mb-2 rightInput">
                                     <b-form-input type="text" placeholder="Plaats" required></b-form-input>
                                 </b-col>
                             </b-row> 
                         </b-col>
-                        <b-col cols="3" class="userCol">
+                        <b-col cols="3" class="productCol">
                             <div class="userDiv">
                                 <h4 class="userText">Bezorg opties</h4>
                                 <div class="buttonOptions">Verander bezorg adres</div>
@@ -263,7 +263,7 @@ export default {
     border-left: 6px solid white;
 }
 
-.userCol {
+.productCol {
     border-left: 5px solid white;
     margin-left: 10px;
     height: 100%;
