@@ -118,15 +118,7 @@ export default {
     },
     data() {
         return {
-            bezorgArray: [
-                { placeholder: 'Voornaam' },
-                { placeholder: 'Geboorte datum' },
-                { placeholder: 'Achternaam' },
-                { placeholder: 'Klant nummer' },
-                { placeholder: 'Email' },
-                { placeholder: 'Geslacht' },
-                { placeholder: 'Telefoon' },
-            ]
+            
         }
     }
 }

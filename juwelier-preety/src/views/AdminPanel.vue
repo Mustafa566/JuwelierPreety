@@ -5,45 +5,47 @@
         <Navbar></Navbar>
     <div class="secondSpacer"></div>
         <div class="headText">
-            <h4 class="text-center">Bestelling lijst</h4>
+            <h4 class="text-center">Admin paneel</h4>
         </div>
     <div class="secondSpacer"></div>
         <b-row>
-            <b-col lg="8" class="firstCol">
+            <b-col lg="4" class="firstCol">
                 <div class="firstDiv">
-                <h2 class="mainText">Bestellingen</h2>
+                <h2 class="mainText">Admin opties</h2>
                 <hr class="hr">
-                    <b-row class="tableRow" v-for="index in 10" :key="index">
-                        <b-col class="tableData">
-                            <p>Productnaam</p>
+                    <b-row class="filterRow" v-for="opties in adminOpties" :key="opties.name">
+                        <b-col lg="11" class="optieText">
+                            <h4>{{opties.name}}</h4>
                         </b-col>
-                        <b-col class="tableData">
-                            <p>Product kenmerk</p>
-                        </b-col>
-                        <b-col class="tableData">
-                            <p>Klant naam</p>
-                        </b-col>
-                        <b-col class="tableData">
-                            <p>Klant email</p>
-                        </b-col>
-                        <b-col>
-                            <div class="arrowCol">
-                                <img src="@/assets/arrow.png" class="arrowImg">
-                            </div>
+                        <b-col class="arrowBtn">
+                            <span class="helper"></span>
+                            <img src="@/assets/arrow.png" class="arrowImgFilter">
                         </b-col>
                     </b-row>
                 </div>
             </b-col>
-            <b-col class="orderCol" align-self="stretch">
-                <div class="orderDiv">
-                    <h1 class="orderH1">Bestelling filter</h1>
-                    <b-row class="orderRow">
-                        <b-input-group class="mt-2 mr-2">
-                            <b-form-input></b-form-input>
-                            <b-input-group-append>
-                                <b-button class="searchBtn">Zoek</b-button>
-                            </b-input-group-append>
-                        </b-input-group>
+            <b-col class="secondCol" align-self="stretch">
+                <div class="storeDiv">
+                    <h1 class="storeH1">Winkel informatie</h1>
+                    <b-row class="storeRow" v-for="index in 5" :key="index">
+                        <h4>Test</h4>
+                        <h4>Test</h4>
+                    </b-row>
+                </div>
+
+                <div class="storeDiv mt-2">
+                    <h1 class="storeH1">Recentelijke aankopen</h1>
+                    <b-row class="storeRow" v-for="index in 5" :key="index">
+                        <h4>Test</h4>
+                        <h4>Test</h4>
+                    </b-row>
+                </div>
+
+                <div class="storeDiv mt-2">
+                    <h1 class="storeH1">Product informatie</h1>
+                    <b-row class="storeRow" v-for="index in 5" :key="index">
+                        <h4>Test</h4>
+                        <h4>Test</h4>
                     </b-row>
                 </div>
             </b-col>
@@ -70,14 +72,12 @@ export default {
     },
     data() {
         return {
-            bezorgArray: [
-                { placeholder: 'Voornaam' },
-                { placeholder: 'Geboorte datum' },
-                { placeholder: 'Achternaam' },
-                { placeholder: 'Klant nummer' },
-                { placeholder: 'Email' },
-                { placeholder: 'Geslacht' },
-                { placeholder: 'Telefoon' },
+            adminOpties: [
+                { name: 'Gebruikers' },
+                { name: 'Producten' },
+                { name: 'Filters' },
+                { name: 'Bestellingen' },
+                { name: 'Winkel' },
             ]
         }
     }
@@ -121,15 +121,37 @@ export default {
 .mainText {
     margin-left: 15px;
     margin-bottom: 0px;
+    margin-top: 15px;
 }
 
-.tableRow {
+.filterRow {
     background-color: #efefef;
     margin-left: 15px;
     margin-right: 15px;
     margin-bottom: 10px;
-    padding-top: 15px;
     padding-left: 15px;
+}
+
+.optieText {
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+.arrowBtn {
+    background-color: #c7c7c7;
+    color: white;
+}
+
+.arrowImgFilter {
+    vertical-align: middle;
+    width: 30px;
+    margin: 5px;
+}
+
+.helper {
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
 }
 
 .arrowCol {
@@ -152,32 +174,26 @@ export default {
     margin-top: 5px;
 }
 
-.orderCol {
+.secondCol {
     background-color: #f7f7f7;
     width: 100%;
     height: 100%;
-    border: 2px solid #f7f7f7;
 }
 
-.orderDiv {
+.storeDiv {
     border: 5px solid white;
     margin: 0 20px;
     padding-left: 10px;
-    height: 820px;
+    max-height: 310px;
 }
 
-.orderH1 {
+.storeH1 {
     border-bottom: 5px solid white;
     width: 90%;
 }
 
-.orderRow {
+.storeRow {
     padding: 0;
     margin: 10px 0px;
-}
-
-.searchBtn {
-    background-color: #E6E6E6;
-    color: #707070;
 }
 </style>

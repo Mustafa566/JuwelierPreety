@@ -8,6 +8,7 @@ import ShoppingCheckOut from '../views/ShoppingCheckOut.vue'
 import UserInformation from '../views/UserInformation.vue'
 import AdminPanelAddProduct from '../views/AdminPanelAddProduct.vue'
 import OrderList from '../views/OrderList.vue'
+import AdminPanel from '../views/AdminPanel.vue'
 
 Vue.use(VueRouter)
 
@@ -20,6 +21,7 @@ const routes = [
   { path: '/UserInformation', name: 'UserInformation', component: UserInformation },
   { path: '/AdminPanelAddProduct', name: 'AdminPanelAddProduct', component: AdminPanelAddProduct },
   { path: '/OrderList', name: 'OrderList', component: OrderList },
+  { path: '/AdminPanel', name: 'AdminPanel', component: AdminPanel },
 ]
 
 const router = new VueRouter({

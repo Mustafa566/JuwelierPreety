@@ -69,6 +69,25 @@
                               Ipsum.
                             </p>
                         </div>
+                    <!-- Add to cart -->
+                        <b-row class="pt-2 addCardDiv textColor">
+                            <b-col class="cardText" lg="5">
+                                <b-row>
+                                    <b-col>
+                                        <h3 class="mt-2">Voeg toe aan winkelwagen</h3>
+                                    </b-col>
+                                    <b-col lg="2" class="heartDiv">
+                                        <img src="@/assets/heart.png" class="heartImg">
+                                    </b-col>
+                                    <b-col lg="2" class="heartDiv">
+                                        <img src="@/assets/shopCart.png" class="heartImg">
+                                    </b-col>
+                                </b-row>
+                            </b-col>
+                            <b-col class="cost text-center pt-1" lg="2">
+                                <h1>$1200</h1>
+                            </b-col>
+                        </b-row>
                     </b-col>
                 </b-row>
             </b-col>
@@ -76,25 +95,7 @@
                 <img src="@/assets/productImg.png" class="imgSelf">
             </b-col>
         </b-row>
-        <!-- Add to cart -->
-        <b-row class="pt-2 addCardDiv textColor">
-            <b-col class="cardText" lg="5">
-                <b-row>
-                    <b-col>
-                        <h3 class="mt-2">Voeg toe aan winkelwagen</h3>
-                    </b-col>
-                    <b-col lg="2" class="heartDiv">
-                        <img src="@/assets/heart.png" class="heartImg">
-                    </b-col>
-                    <b-col lg="2" class="heartDiv">
-                        <img src="@/assets/heart.png" class="heartImg">
-                    </b-col>
-                </b-row>
-            </b-col>
-            <b-col class="cost text-center pt-1" lg="2">
-                <h1>$1200</h1>
-            </b-col>
-        </b-row>
+       
     </div>
     <!-- Product specificaties -->
     <div class="txtDiv">
@@ -145,14 +146,14 @@ export default {
           { name: 'Karaat:' },
           { name: 'Materiaal:' },
           { name: 'Diamand zuiverheid:' },
-          { name: 'Model set' },
-          { name: 'Maat' },
-          { name: 'Kleur steen' },
-          { name: 'Merk' },
-          { name: 'Diamand slijpvorm' },
-          { name: 'Slijpvorm' },
-          { name: 'Diamand aantal' },
-          { name: 'Afmeting' },
+          { name: 'Model set:' },
+          { name: 'Maat:' },
+          { name: 'Kleur steen:' },
+          { name: 'Merk:' },
+          { name: 'Diamand slijpvorm:' },
+          { name: 'Slijpvorm:' },
+          { name: 'Diamand aantal:' },
+          { name: 'Afmeting:' },
         ]
     }
   },
@@ -274,7 +275,6 @@ export default {
 
 .addCardDiv {
   background-color: white;
-  width: 1518px;
 }
 
 .cardText {
