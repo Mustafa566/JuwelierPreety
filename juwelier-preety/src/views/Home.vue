@@ -10,7 +10,7 @@
             <PopulairCollection></PopulairCollection>
         </div>
         <b-row class="rightSide">
-            <b-col xs="12" sm="12" md="8" lg="2" class="mr-1 mb-1 colProduct" v-for="index in 8" :key="index">
+            <b-col xs="12" sm="12" md="8" lg="2" class="mr-1 mb-1 colProduct" v-for="index in 8" :key="index" @click="increment()">
                 <div class="productInfo">
                     <img src="@/assets/productImg.png" class="productImg">
                     <div class="productDetails">
@@ -29,6 +29,7 @@
             </b-col>
         </b-row>
     </div>
+    
 <div class="spacer"></div>
     <Carousel></Carousel>
 <div class="spacer"></div>
@@ -57,7 +58,7 @@ export default {
   name: 'Home',
   data() {
     return {
-
+      
     }
   },
   head: {
@@ -94,6 +95,8 @@ export default {
     max-width: 25.666667%;
   }
 }
+
+html, body, template, .home {margin: 0; height: 100%; overflow: hidden}
 
 .spacer {
   background-color: #f7f7f7;
