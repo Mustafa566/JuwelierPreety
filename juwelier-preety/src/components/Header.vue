@@ -1,17 +1,25 @@
 <template>
 <div>
-  <Login v-if="openLogin"></Login>
+  <Login v-if="openLogin" :close="openLogin"></Login>
+  <Contact v-if="openContact"></Contact>
+  <CustomerService v-if="openService"></CustomerService>
+  <ShoppingCartDetail v-if="openShoppingCart"></ShoppingCartDetail>
+  <FavoritesPopUp v-if="openFavoritesPopUp"></FavoritesPopUp>
   <b-navbar toggleable="lg">
     <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
     <b-collapse id="nav-collapse" is-nav>
       <b-navbar-nav>
-        <b-nav-item class="navColor" href="#">Over ons</b-nav-item>
-        <b-nav-item class="navColor" href="#" disabled>Contact</b-nav-item>
-        <b-nav-item class="navColor" href="#" disabled>Klanten service</b-nav-item>
+        <b-nav-item class="navColor">
+          <router-link to="AboutUs" class="navColor">Over ons</router-link>
+        </b-nav-item>
+        <b-nav-item class="navColor" @click="contact()">Contact</b-nav-item>
+        <b-nav-item class="navColor" @click="service()">Klanten service</b-nav-item>
+        <b-nav-item class="navColor" @click="shoppingCart()">ShoppingCart</b-nav-item>
+        <b-nav-item class="navColor" @click="favorites()">Favorites</b-nav-item>
       </b-navbar-nav>
       <!-- Right aligned nav items -->
       <b-navbar-nav class="ml-auto">
-        <b-nav-item href="#" @click="isModalVisible()">Inloggen</b-nav-item>
+        <b-nav-item href="#" @click="login()">Inloggen</b-nav-item>
         <div>
           <img>
           <img>
@@ -23,7 +31,9 @@
   
   <!-- Image logo -->
   <b-row class="containerColor">
-    <img class="logo" src="@/assets/logo.png">
+    <router-link to="/" class="logo">
+      <img class="logo" src="@/assets/logo.png">
+    </router-link>
   </b-row>
 
   <b-row class="spacer"><br></b-row>
@@ -32,27 +42,62 @@
 
 <script>
 import Login from '../components/Login.vue'
+import Contact from '../components/Contact.vue'
+import CustomerService from '../components/CustomerService.vue'
+import ShoppingCartDetail from '../components/ShoppingCartDetail.vue'
+import FavoritesPopUp from '../components/FavoritesPopUp.vue'
 
 export default {
   name: 'Header',
   components: {
-    Login
+    Login,
+    Contact,
+    CustomerService,
+    ShoppingCartDetail,
+    FavoritesPopUp
   },
   data() {
     return {
       dialog: false,
-      openLogin: false
+      openLogin: false,
+      openContact: false,
+      openService: false,
+      openShoppingCart: false,
+      openFavoritesPopUp: false
     }
   },
   methods: {
-    isModalVisible: function() {
-      this.dialog =! this.dialog
-      this.openLogin = true
-      if(this.isModalVisible){
+    checkScroll() {
+      if(this.dialog == true){
         document.documentElement.style.overflow = 'hidden'
-        return
+      } else {
+        document.documentElement.style.overflow = 'auto'
       }
-      document.documentElement.style.overflow = 'auto'
+    },
+    login() {
+      this.dialog =! this.dialog
+      this.checkScroll();
+      this.openLogin = true;
+    },
+    contact() {
+      this.dialog =! this.dialog
+      this.checkScroll();
+      this.openContact = true;
+    },
+    service() {
+      this.dialog =! this.dialog
+      this.checkScroll();
+      this.openService = true;
+    },
+    shoppingCart() {
+      this.dialog =! this.dialog
+      this.checkScroll();
+      this.openShoppingCart = true;
+    },
+    favorites() {
+      this.dialog =! this.dialog
+      this.checkScroll();
+      this.openFavoritesPopUp = true;
     }
   }
 }
@@ -69,6 +114,10 @@ export default {
   #nav-collapse {
     background-color: white;
   }
+}
+
+a:hover {
+  text-decoration: none;
 }
 
 .navbar {

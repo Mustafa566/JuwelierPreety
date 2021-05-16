@@ -1,13 +1,12 @@
 import Vue from 'vue'
-import 'es6-promise/auto'
 import Vuex from 'vuex'
 
 Vue.use(Vuex)
 
 
-const store = new Vuex.Store({
+export default new Vuex.Store({
   state: {
-    count: 0
+    count: 451510
   },
   mutations: {
     increment (state) {

@@ -3,6 +3,18 @@
     <router-view/>
   </div>
 </template>
+<script>
+export default {
+  data() {
+    return {
+      test: this.$store.state.count
+    }
+  },
+  created() {
+    console.log(this.test)
+  }
+}
+</script>
 
 <style>
 html, body {
