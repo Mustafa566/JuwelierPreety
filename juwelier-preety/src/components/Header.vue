@@ -19,8 +19,7 @@
       </b-navbar-nav>
       <!-- Right aligned nav items -->
       <b-navbar-nav class="ml-auto">
-        <b-nav-item href="#" @click="login()" v-if="this.$store.state.isLoggedIn == false">Inloggen</b-nav-item>
-        <b-nav-item href="#" @click="logout()" v-if="this.$store.state.isLoggedIn == true">Log uit</b-nav-item>
+        <b-nav-item href="#" @click="login()">Inloggen</b-nav-item>
         <div>
           <img>
           <img>
@@ -47,7 +46,6 @@ import Contact from '../components/Contact.vue'
 import CustomerService from '../components/CustomerService.vue'
 import ShoppingCartDetail from '../components/ShoppingCartDetail.vue'
 import FavoritesPopUp from '../components/FavoritesPopUp.vue'
-import firebase from 'firebase';
 
 export default {
   name: 'Header',
@@ -65,8 +63,7 @@ export default {
       openContact: false,
       openService: false,
       openShoppingCart: false,
-      openFavoritesPopUp: false,
-      currentUser: ''
+      openFavoritesPopUp: false
     }
   },
   methods: {
@@ -76,12 +73,6 @@ export default {
       } else {
         document.documentElement.style.overflow = 'auto'
       }
-    },
-    logout() {
-      firebase.auth().signOut().then(() => {
-          location.reload()
-          this.$router.push('/')
-      })
     },
     login() {
       this.dialog =! this.dialog

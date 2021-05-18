@@ -4,16 +4,14 @@
   </div>
 </template>
 <script>
-
-
 export default {
   data() {
     return {
-      
+      test: this.$store.state.count
     }
   },
   created() {
-    this.$store.commit('user')
+    console.log(this.test)
   }
 }
 </script>

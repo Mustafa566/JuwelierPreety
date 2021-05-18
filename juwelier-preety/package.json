@@ -14,7 +14,6 @@
     "bootstrap-vue": "^2.21.2",
     "core-js": "^3.6.5",
     "es6-promise": "^4.2.8",
-    "firebase": "^8.6.1",
     "firebase-admin": "^9.8.0",
     "vue": "^2.6.12",
     "vue-head": "^2.2.0",
