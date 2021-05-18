@@ -10,12 +10,12 @@
             </div>
             <div class="authBody">
                 <h3 class="authText mb-4">Inloggen</h3>
-                <b-form-input class="authInput" placeholder="Email..."></b-form-input>
+                <b-form-input class="authInput" v-model="login.email" placeholder="Email..."></b-form-input>
                 <b-row class="mt-3">
                     <b-col>
-                        <b-form-input class="authInput passInput" placeholder="Wachtwoord..."></b-form-input>
+                        <b-form-input class="authInput passInput" v-model="login.password" placeholder="Wachtwoord..."></b-form-input>
                     </b-col>
-                    <b-col class="arrowDiv pointer" cols="2">
+                    <b-col class="arrowDiv pointer" cols="2" @click="userLogin()">
                         <span class="helper"></span>
                         <img src="@/assets/arrow.png" class="arrowImg">
                     </b-col>
@@ -53,13 +53,13 @@
             </div>
             <div class="authBody">
                 <h3 class="authText mb-4">Registreren</h3>
-                <b-form-input class="authInput" placeholder="Voornaam..."></b-form-input>
-                <b-form-input class="authInput mt-3" placeholder="Achternaam..."></b-form-input>
-                <b-form-input class="authInput mt-3" placeholder="E-mailadres..."></b-form-input>
-                <b-form-input class="authInput mt-3" placeholder="Wachtwoord..."></b-form-input>
-                <b-form-select class="mt-3" v-model="selected" :options="options"></b-form-select>
+                 <b-form-input class="authInput" v-model="form.firstName" placeholder="Voornaam..."></b-form-input>
+                <b-form-input class="authInput mt-3" v-model="form.lastName" placeholder="Achternaam..."></b-form-input>
+                <b-form-input class="authInput mt-3" v-model="form.email" placeholder="E-mailadres..."></b-form-input>
+                <b-form-input type="password" class="authInput mt-3" v-model="form.password" placeholder="Wachtwoord..."></b-form-input>
+                <b-form-select class="mt-3" v-model="form.selected" :options="options"></b-form-select>
             <hr class="selectGenderHr">
-                <div class="buttons pointer">
+                <div class="buttons pointer" @click="register()">
                     <h4>Registreren</h4>
                 </div>
                 <h3 class="newCustomerText mt-4">Bent u al lid ?</h3>
@@ -82,25 +82,11 @@
                 <h3 class="authText mb-4">Wachtwoord vergeten</h3>
                 <b-row class="mt-3">
                     <b-col>
-                        <b-form-input class="authInput passInput" placeholder="Emailadres..."></b-form-input>
+                        <b-form-input class="authInput passInput" placeholder="Emailadres..." v-model="forgotPassInput"></b-form-input>
                     </b-col>
-                    <b-col class="arrowDiv pointer" cols="2">
+                    <b-col class="arrowDiv pointer" cols="2" @click="forgotPassword">
                         <span class="helper"></span>
                         <img src="@/assets/arrow.png" class="arrowImg">
-                    </b-col>
-                </b-row>
-                <b-row class="socialMediaLogin">
-                    <b-col class="logoLogin pointer">
-                        <img src="@/assets/LoginIcons/google.png" class="imgLogo">
-                    </b-col>
-                    <b-col class="logoLogin pointer">
-                        <img src="@/assets/LoginIcons/facebook.png" class="imgLogo">
-                    </b-col>
-                    <b-col class="logoLogin pointer">
-                        <img src="@/assets/LoginIcons/twitter.png" class="imgLogo">
-                    </b-col>
-                    <b-col class="logoLogin pointer">
-                        <img src="@/assets/LoginIcons/apple.png" class="imgLogo">
                     </b-col>
                 </b-row>
                 <h3 class="newCustomerText mt-4">Bent u al lid ?</h3>
@@ -113,6 +99,9 @@
 </template>
 
 <script>
+import { db } from '../database.js';
+import firebase from 'firebase';
+
 export default {
     props: ['close'],
     data() {
@@ -121,15 +110,56 @@ export default {
             openLogin: true,
             openRegister: false,
             openForgotPass: false,
-            selected: 'Man',
             options: [
                 { value: 'Man', text: 'Man' },
                 { value: 'Vrouw', text: 'Vrouw' },
                 { value: 'Wil het niet zeggen', text: 'Wil het niet zeggen' },
-            ]
+            ],
+            form: {
+                firstName: '',
+                lastName: '',
+                email: '',
+                password: '',
+                selected: 'Man',
+            },
+            login: {
+                email: '',
+                password: ''
+            },
+            forgotPassInput: ''
         }
     },
     methods: {
+        userLogin() {
+            firebase.auth().signInWithEmailAndPassword(this.login.email, this.login.password)
+            .then(() => {
+                location.reload()
+                console.log('login');
+                this.$store.mutation.user();
+            },
+            err => {
+                alert(err.message);
+            })
+        },
+        register() {
+            firebase.auth().createUserWithEmailAndPassword(this.form.email, this.form.password)
+            .then(() => {
+                location.reload()
+                console.log(db.app);
+            },
+            err => {  
+                alert(err.message);
+            })
+        },
+        forgotPassword() {
+            firebase.auth().sendPasswordResetEmail(this.forgotPassInput).then(() => {
+                alert('Email send');
+                // Email sent.
+            }).catch((error) => {
+                // An error happened.
+                alert(error);
+            });
+        },
         openForgotPassword() {
             this.openLogin = false
             this.openRegister = false;

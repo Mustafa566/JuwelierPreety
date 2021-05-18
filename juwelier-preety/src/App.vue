@@ -7,11 +7,11 @@
 export default {
   data() {
     return {
-      test: this.$store.state.count
+      
     }
   },
   created() {
-    console.log(this.test)
+    this.$store.commit('user')
   }
 }
 </script>
