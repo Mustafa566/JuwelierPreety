@@ -1,5 +1,7 @@
 <template>
   <div id="app">
+    <!-- <b-alert variant="success" show class="succesAlert">Success Alert</b-alert>
+    <b-alert variant="danger" show class="warningAlert">Success Alert</b-alert> -->
     <router-view/>
   </div>
 </template>
@@ -7,11 +9,11 @@
 export default {
   data() {
     return {
-      
+
     }
   },
   created() {
-    this.$store.commit('user')
+    //this.$store.commit('user')
   }
 }
 </script>
@@ -24,5 +26,17 @@ html, body {
 #app {
   overflow-x: hidden;
   overflow-y: hidden;
+}
+
+.successAlert {
+  position: absolute;
+  width: 100%;
+  z-index: 1;
+}
+
+.warningAlert {
+  position: absolute;
+  width: 100%;
+  z-index: 1;
 }
 </style>

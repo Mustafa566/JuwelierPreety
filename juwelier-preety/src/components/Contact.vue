@@ -9,14 +9,13 @@
         </div>
         <div class="contactBody">
             <h3 class="contactText mb-4">Formulier</h3>
-            <b-form-input class="contactInput" placeholder="Voornaam..."></b-form-input>
-            <b-form-input class="contactInput mt-3" placeholder="Achternaam..."></b-form-input>
-            <b-form-input class="contactInput mt-3" placeholder="E-mailadres..."></b-form-input>
+            <b-form-input class="contactInput" placeholder="Voornaam..." v-model="form.firstName"></b-form-input>
+            <b-form-input class="contactInput mt-3" placeholder="Achternaam..." v-model="form.lastName"></b-form-input>
+            <b-form-input class="contactInput mt-3" placeholder="E-mailadres..." v-model="form.email"></b-form-input>
         <hr class="hrLine">
-            <b-form-textarea class="mt-3" placeholder="Bericht..." rows="4"></b-form-textarea>
+            <b-form-textarea class="mt-3" placeholder="Bericht..." rows="4" v-model="form.message"></b-form-textarea>
         <hr class="hrLine">
-            <h3 class="newCustomerText mt-4">Bent u al lid ?</h3>
-            <div class="buttons pointer">
+            <div class="buttons pointer" @click="send">
                 <h4>Versturen</h4>
             </div>
         </div>
@@ -24,10 +23,28 @@
 </template>
 
 <script>
+import { db } from '../database.js';
+
 export default {
     data() {
         return {
-            
+            form: {
+                firstName: '',
+                lastName: '',
+                email: '',
+                message: ''
+            }
+        }
+    },
+    methods: {
+        async send() {
+            await db.collection('ContactForms').add({
+                firstName: this.form.firstName,
+                lastName: this.form.lastName,
+                email: this.form.email,
+                message: this.form.message,
+            })
+            location.reload();
         }
     }
 }
@@ -81,7 +98,7 @@ p {
     padding: 15px 10px;
     margin-top: 10px;
     width: 500px;
-    height: 620px;
+    height: 550px;
     background-color: #f7f7f7;
     border: 5px solid white;
     color: #707070;
@@ -131,10 +148,6 @@ p {
 .imgLogo {
     width: 24px;
     height: 24px;
-}
-
-.newCustomerText {
-    border-bottom: 5px solid #EEEEEE;
 }
 
 .buttons {

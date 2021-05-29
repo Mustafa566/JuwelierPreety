@@ -1,27 +1,56 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import firebase from 'firebase';
+import {db} from './database';
 Vue.use(Vuex)
 
-
+const getUserLocalStorage = localStorage.getItem('User');
 export default new Vuex.Store({
   state: {
-    count: 451510,
-    getUser: firebase.auth().currentUser,
-    isLoggedIn: null
+    getUser: '',
+    isLoggedIn: false,
+    userData: null,
+    getUserLocalStorage: localStorage.getItem('User')
   },
   mutations: {
-    increment (state) {
-      state.count++
-    },
-    user(state) {
-      firebase.auth().onAuthStateChanged(currentUser => {
-        if(currentUser) {
+    async user(state) {
+      await firebase.auth().onAuthStateChanged(currentUser => {
+        if (currentUser) {
+          state.getUser = currentUser.email;
+          localStorage.setItem('User', state.getUser);
           state.isLoggedIn = true;
+          console.log('Current user: ', state.getUser);
+          console.log('Is logged in: ', state.isLoggedIn);
         } else {
           state.isLoggedIn = false;
+          console.log('Is logged in: ', state.isLoggedIn);
         }
-        console.log(currentUser)
+      })
+    },
+    findUser() {
+      var user = firebase.auth().currentUser.email;
+      if (user) {
+        // User is signed in.
+        console.log('User: ', user);
+      } else {
+        // No user is signed in.
+        console.log('no user');
+      }
+    },
+    async getUserData(state) {
+      await state.getUser == firebase.auth().currentUser;
+      db.collection('Users').doc(`${getUserLocalStorage}`/*'musti@gmail.com'*/).get().then(snapshot => {
+        //const document = snapshot.data()
+        // do something with document
+        if(snapshot.exists == true) {
+          //console.log('DOCUMENT', document);
+          state.userData = true;
+          //console.log(state.userData);
+        } else {
+          console.log('User is not in database');
+          state.userData = false;
+          //console.log(state.userData);
+        }
       })
     }
   }

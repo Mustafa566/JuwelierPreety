@@ -5,6 +5,7 @@
   <CustomerService v-if="openService"></CustomerService>
   <ShoppingCartDetail v-if="openShoppingCart"></ShoppingCartDetail>
   <FavoritesPopUp v-if="openFavoritesPopUp"></FavoritesPopUp>
+  <UserForm v-if="userData === false && isLoggedIn === true"></UserForm>
   <b-navbar toggleable="lg">
     <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
     <b-collapse id="nav-collapse" is-nav>
@@ -16,13 +17,14 @@
         <b-nav-item class="navColor" @click="service()">Klanten service</b-nav-item>
         <b-nav-item class="navColor" @click="shoppingCart()">ShoppingCart</b-nav-item>
         <b-nav-item class="navColor" @click="favorites()">Favorites</b-nav-item>
+        <b><b-nav-item class="navColor">{{this.name}}</b-nav-item></b>
       </b-navbar-nav>
       <!-- Right aligned nav items -->
       <b-navbar-nav class="ml-auto">
-        <b-nav-item href="#" @click="login()" v-if="this.$store.state.isLoggedIn == false">Inloggen</b-nav-item>
-        <b-nav-item href="#" @click="logout()" v-if="this.$store.state.isLoggedIn == true">Log uit</b-nav-item>
+        <b-nav-item href="#" @click="login()" v-if="!this.$store.state.isLoggedIn">Inloggen</b-nav-item>
+        <b-nav-item href="#" @click="logout()" v-if="this.$store.state.isLoggedIn">Log uit</b-nav-item>
         <div>
-          <img>
+          <img src="@/assets/headerIcons/Profile.png" class="profileIcon" @click="toProfile">
           <img>
           <img>
         </div>
@@ -47,7 +49,9 @@ import Contact from '../components/Contact.vue'
 import CustomerService from '../components/CustomerService.vue'
 import ShoppingCartDetail from '../components/ShoppingCartDetail.vue'
 import FavoritesPopUp from '../components/FavoritesPopUp.vue'
+import UserForm from '../components/UserForm.vue'
 import firebase from 'firebase';
+import store from '../store.js';
 
 export default {
   name: 'Header',
@@ -56,7 +60,8 @@ export default {
     Contact,
     CustomerService,
     ShoppingCartDetail,
-    FavoritesPopUp
+    FavoritesPopUp,
+    UserForm
   },
   data() {
     return {
@@ -66,10 +71,24 @@ export default {
       openService: false,
       openShoppingCart: false,
       openFavoritesPopUp: false,
-      currentUser: ''
+      userData: store.state.userData,
+      name: localStorage.getItem('User')
     }
   },
+  mounted() {
+    async function getUsers() {
+      await store.commit('getUserData');
+    }
+    async function users() {
+      await store.commit('user');
+    }
+    getUsers();
+    users();
+  },
   methods: {
+    toProfile() {
+      this.$router.push('UserInformation');
+    },
     checkScroll() {
       if(this.dialog == true){
         document.documentElement.style.overflow = 'hidden'
@@ -79,6 +98,7 @@ export default {
     },
     logout() {
       firebase.auth().signOut().then(() => {
+          localStorage.setItem('isLoggedIn', false);
           location.reload()
           this.$router.push('/')
       })
@@ -135,6 +155,12 @@ a:hover {
 
 .nav-link, .navColor {
   color: #707070 !important;
+  cursor: pointer;
+}
+
+.profileIcon {
+  width: 20px;
+  margin-top: 10px;
   cursor: pointer;
 }
 

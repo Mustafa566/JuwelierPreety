@@ -62,7 +62,7 @@ export default {
     }
   },
   created() {
-    console.log('5515');
+    
   },
   head: {
 		title: function () {

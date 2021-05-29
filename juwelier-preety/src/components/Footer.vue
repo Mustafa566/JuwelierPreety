@@ -33,9 +33,9 @@
                 <div class="formDiv mb-2">
                     <h5>ABBONEER OP ONS DAGBLAD!</h5>
                     <p>Krijg het eerste alle nieuwtjes over Juwelier Preety!</p>
-                    <b-form inline>
-                        <b-form-input class="mt-1" id="input-large" size="lg" placeholder="Email..."></b-form-input>
-                        <b-button class="sendBtn">></b-button>
+                    <b-form inline @submit.prevent="subscribe">
+                        <b-form-input class="mt-1" id="input-large" size="lg" placeholder="Email..." v-model="email"></b-form-input>
+                        <b-button class="sendBtn" @click="subscribe">></b-button>
                     </b-form>
                 </div>
             </b-col>
@@ -57,6 +57,9 @@
 </template>
 
 <script>
+//import firebase from 'firebase'
+import {db} from '../database'
+
 export default {
     data() {
         return {
@@ -85,8 +88,30 @@ export default {
                 { text: 'Facebook' },
                 { text: 'Instagram' },
                 { text: 'Twitter' }
-            ]
+            ],
+            email: ''
         }
+    },
+    methods: {
+        async subscribe() {
+            if (this.email != '') {
+                var documentReference = db.collection('SubscribeNewsletter').doc(this.email);
+                await documentReference.get().then((documentSnapshot) => {
+                    // check and do something with the data here.
+                    if (documentSnapshot.exists) {
+                        // do something with the data
+                        alert('Email exist');
+                    } else {
+                        db.collection('SubscribeNewsletter').doc(this.email).set({
+                            email: this.email
+                        })
+                        this.email = '';
+                    }
+                });
+            } else {
+                alert('Input empty');
+            }
+        },
     }
 }
 </script>

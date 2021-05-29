@@ -13,7 +13,7 @@
                 <b-form-input class="authInput" v-model="login.email" placeholder="Email..."></b-form-input>
                 <b-row class="mt-3">
                     <b-col>
-                        <b-form-input class="authInput passInput" v-model="login.password" placeholder="Wachtwoord..."></b-form-input>
+                        <b-form-input class="authInput passInput" v-model="login.password" placeholder="Wachtwoord..." @keyup.enter="userLogin"></b-form-input>
                     </b-col>
                     <b-col class="arrowDiv pointer" cols="2" @click="userLogin()">
                         <span class="helper"></span>
@@ -21,16 +21,16 @@
                     </b-col>
                 </b-row>
                 <b-row class="socialMediaLogin">
-                    <b-col class="logoLogin pointer">
+                    <b-col class="logoLogin pointer" @click="googleSignIn">
                         <img src="@/assets/LoginIcons/google.png" class="imgLogo">
                     </b-col>
-                    <b-col class="logoLogin pointer">
+                    <b-col class="logoLogin pointer" @click="facebookSignIn">
                         <img src="@/assets/LoginIcons/facebook.png" class="imgLogo">
                     </b-col>
-                    <b-col class="logoLogin pointer">
+                    <b-col class="logoLogin disable">
                         <img src="@/assets/LoginIcons/twitter.png" class="imgLogo">
                     </b-col>
-                    <b-col class="logoLogin pointer">
+                    <b-col class="logoLogin disable">
                         <img src="@/assets/LoginIcons/apple.png" class="imgLogo">
                     </b-col>
                 </b-row>
@@ -53,7 +53,7 @@
             </div>
             <div class="authBody">
                 <h3 class="authText mb-4">Registreren</h3>
-                 <b-form-input class="authInput" v-model="form.firstName" placeholder="Voornaam..."></b-form-input>
+                <b-form-input class="authInput" v-model="form.firstName" placeholder="Voornaam..."></b-form-input>
                 <b-form-input class="authInput mt-3" v-model="form.lastName" placeholder="Achternaam..."></b-form-input>
                 <b-form-input class="authInput mt-3" v-model="form.email" placeholder="E-mailadres..."></b-form-input>
                 <b-form-input type="password" class="authInput mt-3" v-model="form.password" placeholder="Wachtwoord..."></b-form-input>
@@ -101,6 +101,7 @@
 <script>
 import { db } from '../database.js';
 import firebase from 'firebase';
+//import store from '../store.js';
 
 export default {
     props: ['close'],
@@ -133,19 +134,33 @@ export default {
         userLogin() {
             firebase.auth().signInWithEmailAndPassword(this.login.email, this.login.password)
             .then(() => {
+                localStorage.setItem('isLoggedIn', true);
                 location.reload()
-                console.log('login');
-                this.$store.mutation.user();
             },
             err => {
                 alert(err.message);
             })
         },
-        register() {
-            firebase.auth().createUserWithEmailAndPassword(this.form.email, this.form.password)
+        async addUserData() {
+            if (this.form.firstName != '' && this.form.lastName != '' && this.form.email != '' && this.form.password != '') {
+                await db.collection('Users').doc(`${firebase.auth().currentUser.email}`).set({
+                    firstName: this.form.firstName,
+                    lastName: this.form.lastName,
+                    email: this.form.email,
+                    selected: this.form.selected,
+                })
+            } else {
+                alert('Input empty')
+            }
+        },
+        async register() {
+            await firebase.auth().createUserWithEmailAndPassword(this.form.email, this.form.password)
             .then(() => {
-                location.reload()
-                console.log(db.app);
+                this.addUserData();
+                localStorage.setItem('isLoggedIn', true);
+                setTimeout(function () { 
+                    location.reload(); 
+                }, 2000);
             },
             err => {  
                 alert(err.message);
@@ -159,6 +174,22 @@ export default {
                 // An error happened.
                 alert(error);
             });
+        },
+        googleSignIn() {
+            const provider = new firebase.auth.GoogleAuthProvider();
+            firebase.auth().signInWithPopup(provider).then(() => {
+                location.reload()
+            }).catch(err => {
+                console.log(err)
+            })
+        },
+        facebookSignIn() {
+            var provider = new firebase.auth.FacebookAuthProvider();
+            firebase.auth().signInWithPopup(provider).then(() => {
+                location.reload()
+            }).catch(err => {
+                console.log(err)
+            })
         },
         openForgotPassword() {
             this.openLogin = false
@@ -177,6 +208,10 @@ export default {
 
 .pointer {
     cursor: pointer;
+}
+
+.disable {
+    cursor: not-allowed;
 }
 
 .main {
