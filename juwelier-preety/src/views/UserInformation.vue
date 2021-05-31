@@ -17,52 +17,91 @@
                         <b-col>
                             <b-row>
                                 <b-col lg="6" class="mb-2">
-                                    <b-form-input type="text" placeholder="Voornaam" required></b-form-input>
+                                    <b-form-input 
+                                    type="text" 
+                                    placeholder="Voornaam" 
+                                    v-model="getUserDataDoc.firstName" 
+                                    :value="getUserDataDoc.firstName" 
+                                    :disabled="disable"
+                                    required>
+                                    </b-form-input>
                                 </b-col>
                                 <b-col lg="6" class="rightInput">
-                                    <b-form-input type="text" placeholder="Geboorte datum" required></b-form-input>
+                                    <b-form-input 
+                                    type="text" 
+                                    placeholder="Geboorte datum" 
+                                    v-model="getUserDataDoc.birth" 
+                                    :value="getUserDataDoc.birth" 
+                                    :disabled="disable"
+                                    required>
+                                    </b-form-input>
                                 </b-col>
                             </b-row>
                             <b-row>
                                 <b-col lg="6" class="mb-2">
-                                    <b-form-input type="text" placeholder="Achternaam" required></b-form-input>
+                                    <b-form-input 
+                                    type="text" 
+                                    placeholder="Achternaam" 
+                                    v-model="getUserDataDoc.lastName" 
+                                    :value="getUserDataDoc.lastName" 
+                                    :disabled="disable"
+                                    required>
+                                    </b-form-input>
                                 </b-col>
                                 <b-col lg="6" class="rightInput">
-                                    <b-form-input type="text" placeholder="Klant Nummer" required></b-form-input>
+                                    <b-form-input 
+                                    type="text" 
+                                    placeholder="Klant Nummer" 
+                                    :value="getUserDataDoc.customerNumber" 
+                                    disabled>
+                                    </b-form-input>
                                 </b-col>
                             </b-row> 
                             <b-row>
                                 <b-col lg="6" class="mb-2">
-                                    <b-form-input type="text" placeholder="Email" required></b-form-input>
+                                    <b-form-input 
+                                    type="text" 
+                                    placeholder="Email" 
+                                    v-model="getUserDataDoc.email" 
+                                    :value="getUserDataDoc.email" 
+                                    :disabled="disable"
+                                    required>
+                                    </b-form-input>
                                 </b-col>
                                 <b-col lg="6" class="rightInput">
-                                    <b-form-input type="text" placeholder="Geslacht" required></b-form-input>
+                                    <b-form-select 
+                                    v-model="getUserDataDoc.selected" 
+                                    :options="options"
+                                    :disabled="disable">
+                                    </b-form-select>
                                 </b-col>
                             </b-row> 
                             <b-row>
                                 <b-col lg="6" class="mb-2">
-                                    <b-form-input type="text" placeholder="Telefoon" required></b-form-input>
+                                    <b-form-input 
+                                    type="text" 
+                                    placeholder="Telefoon" 
+                                    v-model="getUserDataDoc.phoneNumber" 
+                                    :value="getUserDataDoc.phoneNumber" 
+                                    :disabled="disable"
+                                    required></b-form-input>
+                                </b-col>
+                                <b-col lg="6" class="rightInput" v-if="openUpdate">
+                                    <b-button class="btn-success" @click="update" :disabled="disable">Update</b-button>
+                                    <b-button class="ml-2 btn-danger" @click="openUpdate = false; disable = true" :disabled="disable">Cancel</b-button>
                                 </b-col>
                             </b-row> 
                         </b-col>
-                        <b-col cols="3" class="productCol">
+                        <b-col cols="3" class="userCol">
                             <div class="userDiv">
                                 <h4 class="userText">Gebruikers opties</h4>
-                                <div class="buttonOptions">Gegevens aanpassen</div>
+                                <div class="buttonOptions cursor" @click="openInput">Gegevens aanpassen</div>
                                 <div class="buttonOptions">Nieuwe gebruiker</div>
-                                <div class="buttonOptions">Verwijder gebruiker</div>
+                                <div class="buttonOptions cursor">Verwijder gebruiker</div>
                             </div>
                         </b-col>
                     </b-row>
                 </div>
-                <!-- <b-row class="deliveryNewRow">
-                    <b-col>
-                        <h1 class="deliveryHeadText">Bezorg informatie</h1>
-                        <b-row class="rowBlock">
-                            <b-col class="colBlock" lg="2" v-for="index in 5" :key="index"></b-col>
-                        </b-row>
-                    </b-col>
-                </b-row> -->
                 <div class="firstDiv mt-3">
                 <h2 class="mainText">Bezorg informatie</h2>
                 <hr class="hr">
@@ -70,41 +109,87 @@
                         <b-col>
                             <b-row>
                                 <b-col lg="6" class="mb-2">
-                                    <b-form-input type="text" placeholder="Land" required></b-form-input>
+                                    <b-form-input 
+                                    type="text" 
+                                    placeholder="Land" 
+                                    v-model="getUserDelivery.land" 
+                                    :value="getUserDelivery.land" 
+                                    :disabled="disableDeliv"
+                                    required>
+                                    </b-form-input>
                                 </b-col>
                                 <b-col lg="6" class="rightInput">
-                                    <b-form-input type="text" placeholder="Postcode" required></b-form-input>
+                                    <b-form-input 
+                                    type="text" 
+                                    placeholder="Postcode" 
+                                    v-model="getUserDelivery.zipcode" 
+                                    :value="getUserDelivery.zipcode" 
+                                    :disabled="disableDeliv"
+                                    required>
+                                    </b-form-input>
                                 </b-col>
                             </b-row>
                             <b-row>
                                 <b-col lg="6" class="mb-2">
-                                    <b-form-input type="text" placeholder="Straatnaam" required></b-form-input>
+                                    <b-form-input 
+                                    type="text" 
+                                    placeholder="Straatnaam" 
+                                    v-model="getUserDelivery.streetName" 
+                                    :value="getUserDelivery.streetName" 
+                                    :disabled="disableDeliv"
+                                    required>
+                                    </b-form-input>
                                 </b-col>
                                 <b-col lg="6" class="rightInput">
-                                    <b-form-input type="text" placeholder="Soort Appartment, Flat ..." required></b-form-input>
+                                    <b-form-input 
+                                    type="text" 
+                                    placeholder="Soort Appartment, Flat ..." 
+                                    v-model="getUserDelivery.houseSort" 
+                                    :value="getUserDelivery.houseSort" 
+                                    :disabled="disableDeliv"
+                                    required> 
+                                    </b-form-input>
                                 </b-col>
                             </b-row> 
                             <b-row>
                                 <b-col lg="6" class="mb-2">
-                                    <b-form-input type="text" placeholder="Huis Nummer + Toevoeging" required></b-form-input>
+                                    <b-form-input 
+                                    type="text" 
+                                    placeholder="Huis Nummer + Toevoeging" 
+                                    v-model="getUserDelivery.houseNumberOrLetter" 
+                                    :value="getUserDelivery.houseNumberOrLetter" 
+                                    :disabled="disableDeliv"
+                                    required> 
+                                    </b-form-input>
                                 </b-col>
                                 <b-col lg="6" class="mb-2 rightInput">
-                                    <b-form-input type="text" placeholder="Plaats" required></b-form-input>
+                                    <b-form-input 
+                                    type="text" 
+                                    placeholder="Plaats" 
+                                    v-model="getUserDelivery.province" 
+                                    :value="getUserDelivery.province" 
+                                    :disabled="disableDeliv"
+                                    required>
+                                    </b-form-input>
+                                </b-col>
+                                <b-col lg="6" class="mb-2" v-if="updateBtn">
+                                    <b-button class="btn-success" @click="AddUserDelivery" :disabled="disableDeliv">Update</b-button>
+                                    <b-button class="ml-2 btn-danger" @click="updateBtn = false; disableDeliv = true" :disabled="disableDeliv">Cancel</b-button>
                                 </b-col>
                             </b-row> 
                         </b-col>
-                        <b-col cols="3" class="productCol">
+                        <b-col cols="3" class="userCol">
                             <div class="userDiv">
                                 <h4 class="userText">Bezorg opties</h4>
-                                <div class="buttonOptions">Verander bezorg adres</div>
+                                <div class="buttonOptions cursor" @click="openDelivInput">Verander bezorg adres</div>
                                 <div class="buttonOptions">Nieuw bezorg adres</div>
                             </div>
                         </b-col>
                     </b-row>
                 </div>
-                <b-row class="deliveryNewRow">
+                <b-row class="orderNewRow">
                     <b-col>
-                        <h2 class="deliveryHeadText">Recentelijke bestellingen</h2>
+                        <h2 class="orderHeadText">Recentelijke bestellingen</h2>
                         <b-row class="rowBlock">
                             <b-col class="colBlock">
 
@@ -182,6 +267,9 @@ import Header from '../components/Header.vue'
 import Navbar from '../components/Navbar.vue'
 import SocialMedia from '../components/SocialMedia.vue'
 import Footer from '../components/Footer.vue'
+import store from '../store.js'
+import { db } from '../database.js';
+import firebase from 'firebase';
 
 export default {
     components: {
@@ -192,16 +280,101 @@ export default {
     },
     data() {
         return {
-            bezorgArray: [
-                { placeholder: 'Voornaam' },
-                { placeholder: 'Geboorte datum' },
-                { placeholder: 'Achternaam' },
-                { placeholder: 'Klant nummer' },
-                { placeholder: 'Email' },
-                { placeholder: 'Geslacht' },
-                { placeholder: 'Telefoon' },
-            ]
+            options: [
+                { value: 'Man', text: 'Man' },
+                { value: 'Vrouw', text: 'Vrouw' },
+                { value: 'Wil het niet zeggen', text: 'Wil het niet zeggen' },
+            ],
+            getUser: store.state.getUserLocalStorage,
+            getUserDataDoc: {
+                firstName: '',
+                lastName: '',
+                email: '',
+                selected: '',
+                phoneNumber: '',
+                birth: ''
+            },
+            getUserDelivery: {
+                land: '',
+                zipcode: '',
+                streetName: '',
+                houseSort: '',
+                houseNumberOrLetter: '',
+                province: ''
+            },
+            openUpdate: false,
+            disable: true,
+            disableDeliv: true,
+            updateBtn: false
         }
+    },
+    methods: {
+        openInput() {
+            this.disable = false;
+            this.openUpdate = true;
+        },
+        openDelivInput() {
+            this.disableDeliv = false;
+            this.updateBtn = true;
+        },
+        update() {
+            db.collection('Users').doc(store.state.getUserLocalStorage).update({ 
+                firstName: this.getUserDataDoc.firstName,
+                lastName: this.getUserDataDoc.lastName,
+                email: this.getUserDataDoc.email,
+                selected: this.getUserDataDoc.selected,
+                phoneNumber: this.getUserDataDoc.phoneNumber,
+                birth: this.getUserDataDoc.birth,
+                createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+            }).then(() => {
+                this.disable = true;
+                this.openUpdate = false;
+            })
+        },
+        AddUserDelivery() {
+            db.collection('UserDelivery').doc(store.state.getUserLocalStorage).set({ 
+                userId: store.state.getUserLocalStorage,
+                land: this.getUserDelivery.land,
+                zipcode: this.getUserDelivery.zipcode,
+                streetName: this.getUserDelivery.streetName,
+                houseSort: this.getUserDelivery.houseSort,
+                houseNumberOrLetter: this.getUserDelivery.houseNumberOrLetter,
+                province: this.getUserDelivery.province,
+                createdAt: firebase.firestore.FieldValue.serverTimestamp()
+            }).then(() => {
+                this.disableDeliv = true;
+                this.updateBtn = false;
+            }) 
+        },
+        async queryUserData() {
+            await db.collection("Users").where("email", "==", `${this.getUser}`).get().then((res) => {
+                res.docs.forEach(element => {
+                    var data = element.data();
+                    this.getUserDataDoc = data;
+                });
+            })
+        },
+        async queryUserDeliveryData() {
+            await db.collection("UserDelivery").where("userId", "==", `${this.getUser}`).get().then((res) => {
+                res.docs.forEach(element => {
+                    var data = element.data();
+                    this.getUserDelivery = data;
+                    console.log(data)
+                });
+            })
+        }
+    },
+    mounted() {
+        this.queryUserData();
+        this.queryUserDeliveryData();
+        // for (let index = 0; index < 10; index++) {
+        //     const element = Math.floor(10000 + Math.random() * 100000);
+        //     console.log(element);
+        // }
+        // if(document.getElementById("question").value.length == 0){
+        //     var element = document.getElementById("question");
+        //     element.classList.add("emptyInputBorder");
+        // }
     }
 }
 </script>
@@ -209,6 +382,10 @@ export default {
 <style scoped>
 .col, .col-lg-8 {
     padding: 0;
+}
+
+.cursor {
+    cursor: pointer;
 }
 
 .spacer {
@@ -250,6 +427,10 @@ export default {
     margin-left: 0px;
 }
 
+.emptyInputBorder {
+    border: 2px solid red;
+}
+
 .hr {
     border: none;
     width: 90%;
@@ -263,7 +444,7 @@ export default {
     border-left: 6px solid white;
 }
 
-.productCol {
+.userCol {
     border-left: 5px solid white;
     margin-left: 10px;
     height: 100%;
@@ -346,7 +527,7 @@ export default {
     margin-left: 20px;
 }
 
-.deliveryNewRow {
+.orderNewRow {
     border: 5px solid white;
     margin: 0;
     margin-left: 20px;
@@ -354,7 +535,7 @@ export default {
     padding: 0;
 }
 
-.deliveryHeadText {
+.orderHeadText {
     margin: 10px 20px;
     border-bottom: 5px solid white;
     width: 90%;

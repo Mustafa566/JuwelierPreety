@@ -10,6 +10,7 @@ export default new Vuex.Store({
     getUser: '',
     isLoggedIn: false,
     userData: null,
+    getUserDataDoc: {},
     getUserLocalStorage: localStorage.getItem('User')
   },
   mutations: {
@@ -40,16 +41,15 @@ export default new Vuex.Store({
     async getUserData(state) {
       await state.getUser == firebase.auth().currentUser;
       db.collection('Users').doc(`${getUserLocalStorage}`/*'musti@gmail.com'*/).get().then(snapshot => {
-        //const document = snapshot.data()
+        const document = snapshot.data()
         // do something with document
         if(snapshot.exists == true) {
-          //console.log('DOCUMENT', document);
           state.userData = true;
-          //console.log(state.userData);
+          state.getUserDataDoc = document;
+          //console.log('DOCUMENT', state.getUserDataDoc);
         } else {
           console.log('User is not in database');
           state.userData = false;
-          //console.log(state.userData);
         }
       })
     }
