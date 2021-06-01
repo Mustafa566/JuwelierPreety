@@ -17,66 +17,137 @@
                         <b-col>
                             <b-row>
                                 <b-col lg="6" class="mb-2">
-                                    <b-form-input type="text" placeholder="Product naam" required></b-form-input>
+                                    <b-form-input 
+                                    type="text" 
+                                    placeholder="Product naam" 
+                                    v-model="form.productName" 
+                                    required>
+                                    </b-form-input>
                                 </b-col>
                                 <b-col lg="6" class="rightInput">
-                                    <b-form-input type="text" placeholder="Product merk" required></b-form-input>
+                                    <b-form-input 
+                                    type="text" 
+                                    placeholder="Product merk" 
+                                    v-model="form.productBrand" 
+                                    required>
+                                    </b-form-input>
                                 </b-col>
                             </b-row>
                             <b-row>
                                 <b-col lg="6" class="mb-2">
-                                    <b-textarea rows="5" type="text" placeholder="Product beschrijving..." required></b-textarea>
+                                    <b-textarea 
+                                    rows="5" 
+                                    type="text" 
+                                    placeholder="Product beschrijving..." 
+                                    v-model="form.productDescription" 
+                                    required>
+                                    </b-textarea>
                                 </b-col>
                                 <b-col lg="6" class="rightInput">
-                                    <b-textarea rows="5" type="text" placeholder="Product Kenmerk" required></b-textarea>
+                                    <b-textarea 
+                                    rows="5" 
+                                    type="text" 
+                                    placeholder="Product Kenmerk" 
+                                    v-model="form.productCharacteristic" 
+                                    required>
+                                    </b-textarea>
                                 </b-col>
                             </b-row> 
                             <b-row>
                                 <b-col lg="6" class="mb-2">
-                                    <b-form-input type="text" placeholder="Product korting" required></b-form-input>
+                                    <b-form-input 
+                                    type="text" 
+                                    placeholder="Product korting" 
+                                    v-model="form.productSale" 
+                                    required>
+                                    </b-form-input>
                                 </b-col>
                                 <b-col lg="6" class="rightInput">
-                                    <b-form-input type="text" placeholder="Product Kleur" required></b-form-input>
+                                    <b-form-input 
+                                    type="text" 
+                                    placeholder="Product Kleur" 
+                                    v-model="form.productColor" 
+                                    required>
+                                    </b-form-input>
                                 </b-col>
                             </b-row> 
                             <b-row>
                                 <b-col lg="6" class="mb-2">
-                                    <b-form-input type="text" placeholder="Product korting actief" required></b-form-input>
+                                    <b-form-input 
+                                    type="text" 
+                                    placeholder="Product korting actief" 
+                                    v-model="form.productSaleDate" 
+                                    required>
+                                    </b-form-input>
                                 </b-col>
                                 <b-col lg="6" class="rightInput">
-                                    <b-form-input type="text" placeholder="Product Prijs" required></b-form-input>
+                                    <b-form-input 
+                                    type="text" 
+                                    placeholder="Product Prijs" 
+                                    v-model="form.productPrice" 
+                                    required>
+                                    </b-form-input>
                                 </b-col>
                             </b-row> 
                             <b-row>
                                 <b-col lg="6" class="mb-2">
-                                    <b-form-input type="text" placeholder="Nieuwe collectie" required></b-form-input>
+                                    <b-form-input 
+                                    type="text" 
+                                    placeholder="Nieuwe collectie" 
+                                    v-model="form.newCollection" 
+                                    required>
+                                    </b-form-input>
                                 </b-col>
                                 <b-col lg="6" class="rightInput">
-                                    <b-form-input type="text" placeholder="Product categorie" required></b-form-input>
+                                    <b-form-input 
+                                    type="text" 
+                                    placeholder="Product categorie" 
+                                    v-model="form.productCategorie" 
+                                    required>
+                                    </b-form-input>
                                 </b-col>
                             </b-row> 
                             <b-row>
                                 <b-col lg="6" class="mb-2">
-                                    <b-form-input type="text" placeholder="Live Voorbeeld" required></b-form-input>
+                                    <b-form-input 
+                                    type="text" 
+                                    placeholder="Live Voorbeeld" 
+                                    required>
+                                    </b-form-input>
                                 </b-col>
                                 <b-col lg="6" class="rightInput">
-                                    <b-form-input type="text" placeholder="Product materiaal" required></b-form-input>
+                                    <b-form-input 
+                                    type="text" 
+                                    placeholder="Product materiaal" 
+                                    v-model="form.productMaterial" 
+                                    required>
+                                    </b-form-input>
                                 </b-col>
                             </b-row> 
                             <b-row>
                                 <b-col lg="6" class="mb-2">
-                                    <b-form-input type="text" placeholder="Exclusief" required></b-form-input>
+                                    <b-form-input 
+                                    type="text" 
+                                    placeholder="Exclusief" 
+                                    v-model="form.exclusivePrice" 
+                                    required>
+                                    </b-form-input>
                                 </b-col>
                                 <b-col lg="6" class="mb-2 rightInput">
-                                    <b-form-input type="text" placeholder="Geslacht doelgroep" required></b-form-input>
+                                    <b-form-input 
+                                    type="text" 
+                                    placeholder="Geslacht doelgroep" 
+                                    v-model="form.targetAudience" 
+                                    required>
+                                    </b-form-input>
                                 </b-col>
                             </b-row> 
                         </b-col>
                         <b-col cols="3" class="productCol">
                             <div class="productDiv">
                                 <h4 class="productText">Product opties</h4>
-                                <div class="buttonOptions">Product toevoegen</div>
-                                <div class="buttonOptions">Product verwijderen</div>
+                                <div class="buttonOptions cursor" @click="addProduct">Product toevoegen</div>
+                                <div class="buttonOptions cursor">Product verwijderen</div>
                             </div>
                         </b-col>
                     </b-row>
@@ -92,6 +163,7 @@
                         <div class="imgBox" v-for="index in 5" :key="index">
                             <img src="@/assets/addImg.png">
                         </div>
+                        <img :src="form.url">
                     </b-row>
                 </div>
             </b-col>
@@ -108,6 +180,10 @@ import Header from '../components/Header.vue'
 import Navbar from '../components/Navbar.vue'
 import SocialMedia from '../components/SocialMedia.vue'
 import Footer from '../components/Footer.vue'
+import { db } from '../database.js';
+import firebase from 'firebase';
+
+import { Base64 } from 'js-base64';
 
 export default {
     components: {
@@ -118,7 +194,60 @@ export default {
     },
     data() {
         return {
-            
+            form: [{
+                productName: '',
+                productDescription: '',
+                productSale: '',
+                productSaleDate: '',
+                newCollection: '',
+                exclusivePrice: '',
+                productBrand: '',
+                productCharacteristic: '',
+                productColor: '',
+                productPrice: '',
+                productCategorie: '',
+                productMaterial: '',
+                targetAudience: '',
+                url: null,
+            }]
+        }
+    },
+    created() {
+        // const str = "dcode";
+        // const base64 = btoa(str);
+        // const decode = atob(base64);
+
+        // console.log("Original: ", str);
+        // console.log("Base64: ", base64);
+        // console.log("Decode: ", decode);
+        
+        var pngBase64 = "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=";
+        this.url = Base64.atob(pngBase64);
+    },
+    methods: {
+        async addProduct() {
+            try {
+                await db.collection('Products').add({
+                    productName: this.form.productName,
+                    productDescription: this.form.productDescription,
+                    productSale: this.form.productSale,
+                    productSaleDate: this.form.productSaleDate,
+                    newCollection: this.form.newCollection,
+                    exclusivePrice: this.form.exclusivePrice,
+                    productBrand: this.form.productBrand,
+                    productCharacteristic: this.form.productCharacteristic,
+                    productColor: this.form.productColor,
+                    productPrice: this.form.productPrice,
+                    productCategorie: this.form.productCategorie,
+                    productMaterial: this.form.productMaterial,
+                    targetAudience: this.form.targetAudience,
+                    createdAt: firebase.firestore.FieldValue.serverTimestamp()
+                }).then(() => {
+                    this.form = ''
+                })
+            } catch (error) {
+                alert(error)
+            }
         }
     }
 }
@@ -127,6 +256,10 @@ export default {
 <style scoped>
 .col, .col-lg-8 {
     padding: 0;
+}
+
+.cursor {
+    cursor: pointer;
 }
 
 .spacer {

@@ -8,12 +8,13 @@
                     </b-col>
                 </b-row>
             </div>
+            <!-- Login -->
             <div class="authBody">
                 <h3 class="authText mb-4">Inloggen</h3>
-                <b-form-input class="authInput" v-model="login.email" placeholder="Email..."></b-form-input>
+                <b-form-input type="email" class="authInput" v-model="login.email" placeholder="Email..."></b-form-input>
                 <b-row class="mt-3">
                     <b-col>
-                        <b-form-input class="authInput passInput" v-model="login.password" placeholder="Wachtwoord..." @keyup.enter="userLogin"></b-form-input>
+                        <b-form-input type="password" class="authInput passInput" v-model="login.password" placeholder="Wachtwoord..." @keyup.enter="userLogin"></b-form-input>
                     </b-col>
                     <b-col class="arrowDiv pointer" cols="2" @click="userLogin()">
                         <span class="helper"></span>
@@ -142,13 +143,17 @@ export default {
             })
         },
         async addUserData() {
+            const element = Math.floor(10000 + Math.random() * 100000);
             if (this.form.firstName != '' && this.form.lastName != '' && this.form.email != '' && this.form.password != '') {
                 await db.collection('Users').doc(`${firebase.auth().currentUser.email}`).set({
+                    customerId: element,
                     firstName: this.form.firstName,
                     lastName: this.form.lastName,
                     email: this.form.email,
-                    selected: this.form.selected,
+                    gender: this.form.selected,
+                    createdAt: firebase.firestore.FieldValue.serverTimestamp()
                 })
+                alert(element);
             } else {
                 alert('Input empty')
             }

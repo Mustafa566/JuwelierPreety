@@ -325,7 +325,7 @@ export default {
                 selected: this.getUserDataDoc.selected,
                 phoneNumber: this.getUserDataDoc.phoneNumber,
                 birth: this.getUserDataDoc.birth,
-                createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+                updateAt: firebase.firestore.FieldValue.serverTimestamp(),
             }).then(() => {
                 this.disable = true;
                 this.openUpdate = false;
@@ -367,10 +367,6 @@ export default {
     mounted() {
         this.queryUserData();
         this.queryUserDeliveryData();
-        // for (let index = 0; index < 10; index++) {
-        //     const element = Math.floor(10000 + Math.random() * 100000);
-        //     console.log(element);
-        // }
         // if(document.getElementById("question").value.length == 0){
         //     var element = document.getElementById("question");
         //     element.classList.add("emptyInputBorder");

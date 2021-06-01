@@ -17,7 +17,7 @@
         <b-nav-item class="navColor" @click="service()">Klanten service</b-nav-item>
         <b-nav-item class="navColor" @click="shoppingCart()">ShoppingCart</b-nav-item>
         <b-nav-item class="navColor" @click="favorites()">Favorites</b-nav-item>
-        <b><b-nav-item class="navColor">{{this.name}}</b-nav-item></b>
+        <b><p class="navColor" v-if="this.$store.state.isLoggedIn">{{this.name}}</p></b>
       </b-navbar-nav>
       <!-- Right aligned nav items -->
       <b-navbar-nav class="ml-auto">
