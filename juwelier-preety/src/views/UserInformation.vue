@@ -70,7 +70,7 @@
                                 </b-col>
                                 <b-col lg="6" class="rightInput">
                                     <b-form-select 
-                                    v-model="getUserDataDoc.selected" 
+                                    v-model="getUserDataDoc.gender"
                                     :options="options"
                                     :disabled="disable">
                                     </b-form-select>
@@ -102,7 +102,8 @@
                         </b-col>
                     </b-row>
                 </div>
-                <div class="firstDiv mt-3">
+            <div class="newDiv2"></div>
+                <div class="firstDiv">
                 <h2 class="mainText">Bezorg informatie</h2>
                 <hr class="hr">
                     <b-row class="firstColumn">
@@ -187,6 +188,7 @@
                         </b-col>
                     </b-row>
                 </div>
+            <div class="newDiv2"></div>
                 <b-row class="orderNewRow">
                     <b-col>
                         <h2 class="orderHeadText">Recentelijke bestellingen</h2>
@@ -198,6 +200,7 @@
                     </b-col>
                 </b-row>
             </b-col>
+            <div class="newDiv"></div>
             <b-col class="cartCol" align-self="stretch">
                 <div class="cartDiv">
                     <h1 class="cartH1">Huidige winkelwagen</h1>
@@ -235,6 +238,7 @@
                         </b-col>
                     </b-row>
                 </div>
+            <div class="newDiv2"></div>
                 <div class="favoriteList">
                     <h1 class="cartH1">Huidige verlanglijst</h1>
                     <h3 class="cartH3 w-50">Artikelen</h3>
@@ -257,7 +261,6 @@
         </b-row>
     <div class="secondSpacer"></div>
         <SocialMedia></SocialMedia>
-    <div class="secondSpacer"></div>
         <Footer></Footer>
     </div>
 </template>
@@ -290,7 +293,7 @@ export default {
                 firstName: '',
                 lastName: '',
                 email: '',
-                selected: '',
+                gender: '',
                 phoneNumber: '',
                 birth: ''
             },
@@ -322,7 +325,7 @@ export default {
                 firstName: this.getUserDataDoc.firstName,
                 lastName: this.getUserDataDoc.lastName,
                 email: this.getUserDataDoc.email,
-                selected: this.getUserDataDoc.selected,
+                gender: this.getUserDataDoc.gender,
                 phoneNumber: this.getUserDataDoc.phoneNumber,
                 birth: this.getUserDataDoc.birth,
                 updateAt: firebase.firestore.FieldValue.serverTimestamp(),
@@ -385,13 +388,13 @@ export default {
 }
 
 .spacer {
-  background-color: #f7f7f7;
+  background-color: #E4E4E4;
   width: 100%;
   height: 5px;
 }
 
 .secondSpacer {
-  background-color: #f7f7f7;
+  background-color: #E4E4E4;
   width: 100%;
   height: 10px;
 }
@@ -409,7 +412,7 @@ export default {
 .firstDiv {
     background-color: #f7f7f7;
     border: 5px solid white;
-    margin-left: 25px;
+    margin-left: 20px;
     padding: 0px 20px;
 }
 
@@ -474,8 +477,8 @@ export default {
 
 .cartDiv {
     border: 5px solid white;
-    margin: 0 20px;
-    padding-left: 10px;
+    margin-right: 15px;
+    padding-left: 0px;
 }
 
 .cartH1 {
@@ -527,7 +530,6 @@ export default {
     border: 5px solid white;
     margin: 0;
     margin-left: 20px;
-    margin-top: 20px;
     padding: 0;
 }
 
@@ -557,7 +559,7 @@ export default {
 }
 
 .favoriteList {
-    margin: 20px 20px;
+    margin-right: 15px;
     padding: 10px 10px;
     border: 5px solid white;
 }

@@ -78,7 +78,6 @@
         </div>
     <div class="secondSpacer"></div>
         <SocialMedia></SocialMedia>
-    <div class="secondSpacer"></div>
         <Footer></Footer>
     </div>
 </template>
@@ -106,13 +105,13 @@ export default {
 
 <style scoped>
 .spacer {
-  background-color: #f7f7f7;
+  background-color: #E4E4E4;
   width: 100%;
   height: 5px;
 }
 
 .secondSpacer {
-  background-color: #f7f7f7;
+  background-color: #E4E4E4;
   width: 100%;
   height: 10px;
 }
@@ -138,12 +137,13 @@ export default {
 .mainDiv {
     max-width: 95%;
     margin: 0 auto;
+    padding-top: 10px;
     background-color: #f7f7f7;
 }
 
 .mainContent {
     background-color: #f7f7f7;
-    padding: 20px;
+    margin-top: 10px;
 }
 
 .description {

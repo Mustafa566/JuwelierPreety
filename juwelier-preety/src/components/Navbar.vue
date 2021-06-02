@@ -62,7 +62,7 @@ export default {
 }
 
 .spacer {
-    background-color: #f7f7f7;
+    background-color: #E4E4E4;
     width: 100%;
     height: 10px;
 }

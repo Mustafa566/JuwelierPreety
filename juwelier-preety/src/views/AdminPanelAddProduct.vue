@@ -125,7 +125,7 @@
                                 </b-col>
                             </b-row> 
                             <b-row>
-                                <b-col lg="6" class="mb-2">
+                                <b-col lg="6" class="mb-3">
                                     <b-form-input 
                                     type="text" 
                                     placeholder="Exclusief" 
@@ -133,7 +133,7 @@
                                     required>
                                     </b-form-input>
                                 </b-col>
-                                <b-col lg="6" class="mb-2 rightInput">
+                                <b-col lg="6" class="mb-3 rightInput">
                                     <b-form-input 
                                     type="text" 
                                     placeholder="Geslacht doelgroep" 
@@ -146,13 +146,14 @@
                         <b-col cols="3" class="productCol">
                             <div class="productDiv">
                                 <h4 class="productText">Product opties</h4>
-                                <div class="buttonOptions cursor" @click="addProduct">Product toevoegen</div>
-                                <div class="buttonOptions cursor">Product verwijderen</div>
+                                <div class="buttonOptions cursor add" @click="addProduct">Product toevoegen</div>
+                                <div class="buttonOptions cursor delete" @click="cleanProduct">Product verwijderen</div>
                             </div>
                         </b-col>
                     </b-row>
                 </div>
             </b-col>
+            <div class="verticalLine"></div>
             <b-col class="imageCol" align-self="stretch">
                 <div class="imageDiv">
                     <h1 class="imageH1">Foto's importeren</h1>
@@ -170,7 +171,6 @@
         </b-row>
     <div class="secondSpacer"></div>
         <SocialMedia></SocialMedia>
-    <div class="secondSpacer"></div>
         <Footer></Footer>
     </div>
 </template>
@@ -248,6 +248,9 @@ export default {
             } catch (error) {
                 alert(error)
             }
+        },
+        cleanProduct() {
+            this.form = '';
         }
     }
 }
@@ -269,7 +272,7 @@ export default {
 }
 
 .secondSpacer {
-  background-color: #f7f7f7;
+  background-color:#E4E4E4;
   width: 100%;
   height: 10px;
 }
@@ -340,6 +343,33 @@ export default {
     padding: 10px 10px;
 }
 
+.add {
+    background: linear-gradient(to right, rgba(81, 255, 0, 0.4) 51%, white 50%);
+    background-size: 200% 100%;
+    background-position: right bottom;
+    transition: all .2s ease-out;
+}
+
+.add:hover {
+    background-position: left bottom;
+}
+
+.delete {
+    background: linear-gradient(to right, rgba(255, 0, 0, 0.4) 51%, white 50%);
+    background-size: 200% 100%;
+    background-position: right bottom;
+    transition: all .2s ease-out;
+}
+
+.delete:hover {
+    background-position: left bottom;
+}
+
+.verticalLine {
+    background-color: #E4E4E4;
+    width: 10px;
+}
+
 .imageCol {
     background-color: #f7f7f7;
     width: 100%;
@@ -349,7 +379,7 @@ export default {
 
 .imageDiv {
     border: 5px solid white;
-    margin: 0 20px;
+    margin-right: 10px;
     padding-left: 10px;
 }
 

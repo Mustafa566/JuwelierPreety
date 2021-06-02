@@ -24,6 +24,7 @@
                     </b-row>
                 </div>
             </b-col>
+        <div class="newDiv"></div>
             <b-col class="secondCol" align-self="stretch">
                 <div class="storeDiv">
                     <h1 class="storeH1">Winkel informatie</h1>
@@ -32,16 +33,16 @@
                         <h4>Test</h4>
                     </b-row>
                 </div>
-
-                <div class="storeDiv mt-2">
+            <div class="newDiv2"></div>
+                <div class="storeDiv">
                     <h1 class="storeH1">Recentelijke aankopen</h1>
                     <b-row class="storeRow" v-for="index in 5" :key="index">
                         <h4>Test</h4>
                         <h4>Test</h4>
                     </b-row>
                 </div>
-
-                <div class="storeDiv mt-2">
+            <div class="newDiv2"></div>
+                <div class="storeDiv">
                     <h1 class="storeH1">Product informatie</h1>
                     <b-row class="storeRow" v-for="index in 5" :key="index">
                         <h4>Test</h4>
@@ -52,7 +53,6 @@
         </b-row>
     <div class="secondSpacer"></div>
         <SocialMedia></SocialMedia>
-    <div class="secondSpacer"></div>
         <Footer></Footer>
     </div>
 </template>
@@ -90,13 +90,13 @@ export default {
 }
 
 .spacer {
-  background-color: #f7f7f7;
+  background-color: #E4E4E4;
   width: 100%;
   height: 5px;
 }
 
 .secondSpacer {
-  background-color: #f7f7f7;
+  background-color: #E4E4E4;
   width: 100%;
   height: 10px;
 }
@@ -109,12 +109,13 @@ export default {
 
 .firstCol {
     background-color: #f7f7f7;
+    padding-right: 0;
 }
 
 .firstDiv {
     background-color: #f7f7f7;
     border: 5px solid white;
-    margin-left: 25px;
+    margin-left: 5px;
     padding: 0px 20px;
 }
 
@@ -182,7 +183,7 @@ export default {
 
 .storeDiv {
     border: 5px solid white;
-    margin: 0 20px;
+    margin-right: 15px;
     padding-left: 10px;
     max-height: 310px;
 }

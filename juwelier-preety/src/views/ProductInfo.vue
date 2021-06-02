@@ -193,7 +193,7 @@ export default {
 
 .productDiv {
   margin: 0 auto;
-  background-color: #f7f7f7;
+  background-color: #E4E4E4;
   padding: 0px 50px;
 }
 
@@ -203,19 +203,19 @@ export default {
 }
 
 .spacer {
-  background-color: #f7f7f7;
+  background-color: #E4E4E4;
   width: 100%;
   height: 5px;
 }
 
 .secondSpacer {
-  background-color: #f7f7f7;
+  background-color: #E4E4E4;
   width: 100%;
   height: 10px;
 }
 
 .bigSpacer {
-  background-color: #f7f7f7;
+  background-color: #E4E4E4;
   width: 100%;
   height: 100px;
 }

@@ -23,6 +23,20 @@ html, body {
   background-color: #f7f7f7;
 }
 
+.newDiv {
+    background-color: #E4E4E4;
+    width: 10px;
+}
+
+.newDiv2 {
+    background-color: #E4E4E4;
+    height: 10px;
+}
+
+.spacer, .secondSpacer {
+  background-color: #E4E4E4;
+}
+
 #app {
   overflow-x: hidden;
   overflow-y: hidden;

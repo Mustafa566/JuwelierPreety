@@ -102,13 +102,13 @@ export default {
 html, body, template, .home {margin: 0; height: 100%; overflow: hidden}
 
 .spacer {
-  background-color: #f7f7f7;
+  background-color: #E4E4E4;
   width: 100%;
   height: 5px;
 }
 
 .secondSpacer {
-  background-color: #f7f7f7;
+  background-color: #E4E4E4;
   width: 100%;
   height: 10px;
 }
@@ -121,7 +121,11 @@ html, body, template, .home {margin: 0; height: 100%; overflow: hidden}
 
 .parent {
   display: flex;
-  background-color: #f7f7f7;
+  background-color: #E4E4E4;
+}
+
+.info {
+  background-color: white;
 }
 
 .rightSide {

@@ -34,6 +34,7 @@
                     </b-row>
                 </div>
             </b-col>
+        <div class="newDiv"></div>
             <b-col class="orderCol" align-self="stretch">
                 <div class="orderDiv">
                     <h1 class="orderH1">Bestelling filter</h1>
@@ -50,7 +51,6 @@
         </b-row>
     <div class="secondSpacer"></div>
         <SocialMedia></SocialMedia>
-    <div class="secondSpacer"></div>
         <Footer></Footer>
     </div>
 </template>
@@ -90,13 +90,13 @@ export default {
 }
 
 .spacer {
-  background-color: #f7f7f7;
+  background-color: #E4E4E4;
   width: 100%;
   height: 5px;
 }
 
 .secondSpacer {
-  background-color: #f7f7f7;
+  background-color: #E4E4E4;
   width: 100%;
   height: 10px;
 }
@@ -114,7 +114,7 @@ export default {
 .firstDiv {
     background-color: #f7f7f7;
     border: 5px solid white;
-    margin-left: 25px;
+    margin-left: 20px;
     padding: 0px 20px;
 }
 
@@ -161,7 +161,7 @@ export default {
 
 .orderDiv {
     border: 5px solid white;
-    margin: 0 20px;
+    margin-right: 15px;
     padding-left: 10px;
     height: 820px;
 }

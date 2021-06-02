@@ -11,49 +11,50 @@
         <b-row>
             <b-col lg="8" class="firstCol">
                 <div class="firstDiv">
-                <h1 class="mainText">Bezorg adres</h1>
-                <hr class="hr">
-                <b-row class="firstColumn">
-                    <b-col>
-                        <b-row>
-                            <b-col lg="6" class="mb-2">
-                                <b-form-input type="text" placeholder="Voornaam" required></b-form-input>
-                            </b-col>
-                            <b-col lg="6" class="rightInput">
-                                <b-form-input type="text" placeholder="Geboorte datum" required></b-form-input>
-                            </b-col>
-                        </b-row>
-                        <b-row>
-                            <b-col lg="6" class="mb-2">
-                                <b-form-input type="text" placeholder="Achternaam" required></b-form-input>
-                            </b-col>
-                            <b-col lg="6" class="rightInput">
-                                <b-form-input type="text" placeholder="Klant Nummer" required></b-form-input>
-                            </b-col>
-                        </b-row> 
-                        <b-row>
-                            <b-col lg="6" class="mb-2">
-                                <b-form-input type="text" placeholder="Email" required></b-form-input>
-                            </b-col>
-                            <b-col lg="6" class="rightInput">
-                                <b-form-input type="text" placeholder="Geslacht" required></b-form-input>
-                            </b-col>
-                        </b-row> 
-                        <b-row>
-                            <b-col lg="6" class="mb-2">
-                                <b-form-input type="text" placeholder="Telefoon" required></b-form-input>
-                            </b-col>
-                        </b-row> 
-                    </b-col>
-                    <b-col cols="3" class="deliveryCol">
-                        <div class="deliveryDiv">
-                            <h4 class="deliveryText">Bezorg opties</h4>
-                            <div class="buttonOptions">Nieuwe bezorg adres</div>
-                            <div class="buttonOptions">Zakelijke bezorg adres</div>
-                        </div>
-                    </b-col>
-                </b-row>
-            </div>
+                    <h1 class="mainText">Bezorg adres</h1>
+                    <hr class="hr">
+                    <b-row class="firstColumn">
+                        <b-col>
+                            <b-row>
+                                <b-col lg="6" class="mb-2">
+                                    <b-form-input type="text" placeholder="Voornaam" required></b-form-input>
+                                </b-col>
+                                <b-col lg="6" class="rightInput">
+                                    <b-form-input type="text" placeholder="Geboorte datum" required></b-form-input>
+                                </b-col>
+                            </b-row>
+                            <b-row>
+                                <b-col lg="6" class="mb-2">
+                                    <b-form-input type="text" placeholder="Achternaam" required></b-form-input>
+                                </b-col>
+                                <b-col lg="6" class="rightInput">
+                                    <b-form-input type="text" placeholder="Klant Nummer" required></b-form-input>
+                                </b-col>
+                            </b-row> 
+                            <b-row>
+                                <b-col lg="6" class="mb-2">
+                                    <b-form-input type="text" placeholder="Email" required></b-form-input>
+                                </b-col>
+                                <b-col lg="6" class="rightInput">
+                                    <b-form-input type="text" placeholder="Geslacht" required></b-form-input>
+                                </b-col>
+                            </b-row> 
+                            <b-row>
+                                <b-col lg="6" class="mb-2">
+                                    <b-form-input type="text" placeholder="Telefoon" required></b-form-input>
+                                </b-col>
+                            </b-row> 
+                        </b-col>
+                        <b-col cols="3" class="deliveryCol">
+                            <div class="deliveryDiv">
+                                <h4 class="deliveryText">Bezorg opties</h4>
+                                <div class="buttonOptions">Nieuwe bezorg adres</div>
+                                <div class="buttonOptions">Zakelijke bezorg adres</div>
+                            </div>
+                        </b-col>
+                    </b-row>
+                </div>
+                <div class="newDiv2"></div>
                 <b-row class="deliveryNewRow">
                     <b-col>
                         <h1 class="deliveryHeadText">Bezorg moment</h1>
@@ -62,6 +63,7 @@
                         </b-row>
                     </b-col>
                 </b-row>
+                <div class="newDiv2"></div>
                 <b-row class="deliveryNewRow">
                     <b-col>
                         <h1 class="deliveryHeadText">Betaal methode</h1>
@@ -71,6 +73,7 @@
                     </b-col>
                 </b-row>
             </b-col>
+            <div class="newDiv"></div>
             <b-col class="cartCol" align-self="stretch">
                 <div class="cartDiv">
                     <h1 class="cartH1">Overzicht</h1>
@@ -113,7 +116,6 @@
         </b-row>
     <div class="secondSpacer"></div>
         <SocialMedia></SocialMedia>
-    <div class="secondSpacer"></div>
         <Footer></Footer>
     </div>
 </template>
@@ -155,13 +157,13 @@ export default {
 }
 
 .spacer {
-  background-color: #f7f7f7;
+  background-color: #E4E4E4;
   width: 100%;
   height: 5px;
 }
 
 .secondSpacer {
-  background-color: #f7f7f7;
+  background-color: #E4E4E4;
   width: 100%;
   height: 10px;
 }
@@ -240,8 +242,8 @@ export default {
 
 .cartDiv {
     border: 5px solid white;
-    margin: 0 20px;
-    padding-left: 10px;
+    margin-right: 10px;
+    padding-left: 0px;
 }
 
 .cartH1 {
@@ -293,7 +295,6 @@ export default {
     border: 5px solid white;
     margin: 0;
     margin-left: 20px;
-    margin-top: 20px;
     padding: 0;
 }
 
@@ -314,7 +315,7 @@ export default {
     width: 200px;
     height: 200px;
     margin-right: 10px;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
     background-color: white;
 }
 
