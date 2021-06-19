@@ -202,7 +202,7 @@
             </b-col>
             <div class="newDiv"></div>
             <b-col class="cartCol" align-self="stretch">
-                <div class="cartDiv">
+                <div class="cartDiv pl-2">
                     <h1 class="cartH1">Huidige winkelwagen</h1>
                     <h3 class="cartH3">Artikelen</h3>
                     <b-row class="cartProducts pt-2 mb-2" v-for="index in 5" :key="index">
@@ -239,7 +239,7 @@
                     </b-row>
                 </div>
             <div class="newDiv2"></div>
-                <div class="favoriteList">
+                <div class="favoriteList pl-2">
                     <h1 class="cartH1">Huidige verlanglijst</h1>
                     <h3 class="cartH3 w-50">Artikelen</h3>
                     <b-row class="cartProducts pt-2 mb-2" v-for="index in 5" :key="index">

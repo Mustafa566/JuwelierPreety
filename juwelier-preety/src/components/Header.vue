@@ -89,19 +89,19 @@ export default {
     toProfile() {
       this.$router.push('UserInformation');
     },
-    checkScroll() {
-      if(this.dialog == true){
-        document.documentElement.style.overflow = 'hidden'
-      } else {
-        document.documentElement.style.overflow = 'auto'
-      }
-    },
     logout() {
       firebase.auth().signOut().then(() => {
           localStorage.setItem('isLoggedIn', false);
           location.reload()
           this.$router.push('/')
       })
+    },
+    checkScroll() {
+      if(this.dialog == true){
+        document.documentElement.style.overflow = 'hidden'
+      } else {
+        document.documentElement.style.overflow = 'auto'
+      }
     },
     login() {
       this.dialog =! this.dialog

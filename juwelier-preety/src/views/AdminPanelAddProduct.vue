@@ -94,7 +94,7 @@
                                     <b-form-input 
                                     type="text" 
                                     placeholder="Nieuwe collectie" 
-                                    v-model="form.newCollection" 
+                                    v-model="form.newCollection"
                                     required>
                                     </b-form-input>
                                 </b-col>
@@ -110,8 +110,9 @@
                             <b-row>
                                 <b-col lg="6" class="mb-2">
                                     <b-form-input 
-                                    type="text" 
+                                    type="number" 
                                     placeholder="Live Voorbeeld" 
+                                    v-model="form.availability"
                                     required>
                                     </b-form-input>
                                 </b-col>
@@ -182,7 +183,7 @@ import SocialMedia from '../components/SocialMedia.vue'
 import Footer from '../components/Footer.vue'
 import { db } from '../database.js';
 import firebase from 'firebase';
-
+//import store from '../store.js';
 import { Base64 } from 'js-base64';
 
 export default {
@@ -199,7 +200,7 @@ export default {
                 productDescription: '',
                 productSale: '',
                 productSaleDate: '',
-                newCollection: '',
+                newCollection: false,
                 exclusivePrice: '',
                 productBrand: '',
                 productCharacteristic: '',
@@ -208,26 +209,27 @@ export default {
                 productCategorie: '',
                 productMaterial: '',
                 targetAudience: '',
+                availability: '',
                 url: null,
-            }]
+            }],
         }
     },
     created() {
         // const str = "dcode";
         // const base64 = btoa(str);
         // const decode = atob(base64);
-
         // console.log("Original: ", str);
         // console.log("Base64: ", base64);
         // console.log("Decode: ", decode);
-        
         var pngBase64 = "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=";
         this.url = Base64.atob(pngBase64);
     },
     methods: {
         async addProduct() {
+            const element = Math.floor(1000 + Math.random() * 500000);
             try {
                 await db.collection('Products').add({
+                    productId: element,
                     productName: this.form.productName,
                     productDescription: this.form.productDescription,
                     productSale: this.form.productSale,
@@ -241,12 +243,13 @@ export default {
                     productCategorie: this.form.productCategorie,
                     productMaterial: this.form.productMaterial,
                     targetAudience: this.form.targetAudience,
+                    availability: this.form.availability,
                     createdAt: firebase.firestore.FieldValue.serverTimestamp()
                 }).then(() => {
                     this.form = ''
                 })
             } catch (error) {
-                alert(error)
+                console.log(error)
             }
         },
         cleanProduct() {

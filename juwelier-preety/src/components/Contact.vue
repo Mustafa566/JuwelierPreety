@@ -3,7 +3,7 @@
         <div class="header">
             <b-row>
                 <b-col>
-                    <p>Contact <span class="closeBtn">X</span></p>
+                    <p>Contact <span class="closeBtn" @click="remove">X</span></p>
                 </b-col>
             </b-row>
         </div>
@@ -24,6 +24,7 @@
 
 <script>
 import { db } from '../database.js';
+//import store from '../store.js';
 
 export default {
     data() {
@@ -45,6 +46,11 @@ export default {
                 message: this.form.message,
             })
             location.reload();
+        },
+        remove() {
+            location.reload()
+            // const getMain = document.getElementById('main');
+            // getMain.classList.add("remove");
         }
     }
 }
@@ -58,6 +64,10 @@ export default {
 
 .pointer {
     cursor: pointer;
+}
+
+.remove {
+    display: none;
 }
 
 .main {

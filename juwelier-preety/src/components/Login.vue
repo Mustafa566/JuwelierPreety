@@ -108,7 +108,6 @@ export default {
     props: ['close'],
     data() {
         return {
-            closeLogin: 'sdsfs',
             openLogin: true,
             openRegister: false,
             openForgotPass: false,
