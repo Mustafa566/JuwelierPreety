@@ -52,7 +52,7 @@
                                     <b-form-input 
                                     type="text" 
                                     placeholder="Klant Nummer" 
-                                    :value="getUserDataDoc.customerNumber" 
+                                    :value="getUserDataDoc.customerId" 
                                     disabled>
                                     </b-form-input>
                                 </b-col>
