@@ -11,15 +11,15 @@
             <Carousel class="carousel"></Carousel>
         </div>
         <b-row class="rightSide">
-            <b-col xs="12" sm="12" md="8" lg="2" class="mr-1 mb-1 colProduct" v-for="index in 20" :key="index">
+            <b-col xs="12" sm="12" md="8" lg="2" class="mr-1 mb-1 colProduct" v-for="product in items" :key="product">
                 <div class="productInfo">
                     <img src="@/assets/productImg.png" class="productImg">
                     <img src="@/assets/heart.png" class="heartIcon">
                 </div>
                 <b-row>
                     <b-col>
-                        <p>RHINE STONE</p>
-                        <p>FRANSE RING MET FLEUR UIT BABLA</p>
+                        <p>{{product.Name}}</p>
+                        <p>{{product.Description}}</p>
                     </b-col>
                     <b-col>
                         Op vooraad
@@ -41,6 +41,8 @@ import ProductFilter from '../components/ProductFilter.vue'
 import Carousel from '../components/Carousel.vue'
 import SocialMedia from '../components/SocialMedia.vue'
 import Footer from '../components/Footer.vue'
+import { db } from '../database.js';
+//import firebase from 'firebase';
 
 export default {
   components: {
@@ -54,9 +56,12 @@ export default {
   name: 'Home',
   data() {
     return {
-
+      items: []
     }
   },
+  firebase: {
+    items: db.collection('Products')
+  },  
   head: {
 		title: function () {
 			return {
